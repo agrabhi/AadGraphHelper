@@ -60,6 +60,7 @@ namespace AadGraphApiHelper
             // This depends on method, resourceFirst, and id.
             this.PopulateResourcesSecond();
 
+            this.contentTypeComboBox.SelectedIndex = 0;
             this.resourceSecondComboBox.SelectedItem = this.Store.GetPreference<string>(LastSelectedResourceSecondKey);
             this.requestUrlTextBox.Text = this.Store.GetPreference<string>(LastSelectedRequestUrlKey);
 
@@ -98,7 +99,12 @@ namespace AadGraphApiHelper
                 HttpStatusCode httpStatusCode;
                 string response;
                 RequestHistoryManager.Instance.AddRequest(this.methodComboBox.Text, this.requestUrlTextBox.Text, this.bodyTextBox.Text);
-                httpStatusCode = request.Send(this.methodComboBox.Text, this.requestUrlTextBox.Text, this.bodyTextBox.Text, out response);
+                httpStatusCode = request.Send(
+                    this.methodComboBox.Text, 
+                    this.requestUrlTextBox.Text, 
+                    this.bodyTextBox.Text, 
+                    this.contentTypeComboBox.Text,
+                    out response);
                 this.mainStatusStripStatusLabel.Text = (int)httpStatusCode + @": " + httpStatusCode;
 
                 if (!String.IsNullOrEmpty(response))

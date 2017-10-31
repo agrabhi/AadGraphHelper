@@ -17,11 +17,16 @@ namespace AadGraphApiHelper
             this.AccessToken = accessToken;
         }
 
-        internal HttpStatusCode Send(string method, string url, string body, out string response)
+        internal HttpStatusCode Send(string method, string url, string body, string contentType, out string response)
         {
             WebRequest request = WebRequest.Create(url);
             request.Headers.Add("Authorization", this.AccessToken);
-            request.ContentType = @"application/json";
+
+            if (!string.IsNullOrEmpty(contentType))
+            {
+                request.ContentType = contentType;
+            }
+
             request.Method = method.ToUpperInvariant();
 
             if (!String.IsNullOrWhiteSpace(body))

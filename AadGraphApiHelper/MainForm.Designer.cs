@@ -49,7 +49,6 @@ namespace AadGraphApiHelper
             this.requestUrlTextBox = new System.Windows.Forms.TextBox();
             this.resourceFirstComboBox = new System.Windows.Forms.ComboBox();
             this.entitySetLabel = new System.Windows.Forms.Label();
-            this.apiVersionLabel = new System.Windows.Forms.Label();
             this.apiVersionComboBox = new System.Windows.Forms.ComboBox();
             this.idLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
@@ -90,6 +89,9 @@ namespace AadGraphApiHelper
             this.executeButton = new System.Windows.Forms.Button();
             this.historyButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.apiVersionLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.contentTypeComboBox = new System.Windows.Forms.ComboBox();
             this.responseContextMenuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.requestBodyTabPage.SuspendLayout();
@@ -125,7 +127,7 @@ namespace AadGraphApiHelper
             this.TenantCredentialComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TenantCredentialComboBox.MaxDropDownItems = 20;
             this.TenantCredentialComboBox.Name = "TenantCredentialComboBox";
-            this.TenantCredentialComboBox.Size = new System.Drawing.Size(385, 25);
+            this.TenantCredentialComboBox.Size = new System.Drawing.Size(384, 25);
             this.TenantCredentialComboBox.TabIndex = 5;
             this.TenantCredentialComboBox.SelectedIndexChanged += new System.EventHandler(this.TenantCredentialComboBox_SelectedIndexChanged);
             // 
@@ -276,10 +278,10 @@ namespace AadGraphApiHelper
             // 
             this.resourceFirstComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.resourceFirstComboBox.FormattingEnabled = true;
-            this.resourceFirstComboBox.Location = new System.Drawing.Point(324, 4);
+            this.resourceFirstComboBox.Location = new System.Drawing.Point(304, 4);
             this.resourceFirstComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resourceFirstComboBox.Name = "resourceFirstComboBox";
-            this.resourceFirstComboBox.Size = new System.Drawing.Size(130, 25);
+            this.resourceFirstComboBox.Size = new System.Drawing.Size(87, 25);
             this.resourceFirstComboBox.TabIndex = 14;
             this.resourceFirstComboBox.TextChanged += new System.EventHandler(this.resourceFirstComboBox_TextChanged);
             // 
@@ -287,32 +289,21 @@ namespace AadGraphApiHelper
             // 
             this.entitySetLabel.AutoSize = true;
             this.entitySetLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entitySetLabel.Location = new System.Drawing.Point(214, 0);
+            this.entitySetLabel.Location = new System.Drawing.Point(194, 0);
             this.entitySetLabel.Name = "entitySetLabel";
             this.entitySetLabel.Size = new System.Drawing.Size(104, 33);
             this.entitySetLabel.TabIndex = 13;
             this.entitySetLabel.Text = "&Entity/Func:";
             this.entitySetLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // apiVersionLabel
-            // 
-            this.apiVersionLabel.AutoSize = true;
-            this.apiVersionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.apiVersionLabel.Location = new System.Drawing.Point(784, 0);
-            this.apiVersionLabel.Name = "apiVersionLabel";
-            this.apiVersionLabel.Size = new System.Drawing.Size(104, 33);
-            this.apiVersionLabel.TabIndex = 18;
-            this.apiVersionLabel.Text = "Api Version:";
-            this.apiVersionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // apiVersionComboBox
             // 
             this.apiVersionComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.apiVersionComboBox.FormattingEnabled = true;
-            this.apiVersionComboBox.Location = new System.Drawing.Point(894, 4);
+            this.apiVersionComboBox.Location = new System.Drawing.Point(722, 4);
             this.apiVersionComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.apiVersionComboBox.Name = "apiVersionComboBox";
-            this.apiVersionComboBox.Size = new System.Drawing.Size(87, 25);
+            this.apiVersionComboBox.Size = new System.Drawing.Size(65, 25);
             this.apiVersionComboBox.Sorted = true;
             this.apiVersionComboBox.TabIndex = 19;
             this.apiVersionComboBox.TextChanged += new System.EventHandler(this.apiVersionComboBox_TextChanged);
@@ -321,7 +312,7 @@ namespace AadGraphApiHelper
             // 
             this.idLabel.AutoSize = true;
             this.idLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.idLabel.Location = new System.Drawing.Point(460, 0);
+            this.idLabel.Location = new System.Drawing.Point(397, 0);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(54, 33);
             this.idLabel.TabIndex = 15;
@@ -331,10 +322,10 @@ namespace AadGraphApiHelper
             // idTextBox
             // 
             this.idTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.idTextBox.Location = new System.Drawing.Point(520, 4);
+            this.idTextBox.Location = new System.Drawing.Point(457, 4);
             this.idTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(149, 25);
+            this.idTextBox.Size = new System.Drawing.Size(64, 25);
             this.idTextBox.TabIndex = 16;
             this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
@@ -357,11 +348,12 @@ namespace AadGraphApiHelper
             "DELETE",
             "GET",
             "PATCH",
-            "POST"});
+            "POST",
+            "PUT"});
             this.methodComboBox.Location = new System.Drawing.Point(123, 4);
             this.methodComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.methodComboBox.Name = "methodComboBox";
-            this.methodComboBox.Size = new System.Drawing.Size(85, 25);
+            this.methodComboBox.Size = new System.Drawing.Size(65, 25);
             this.methodComboBox.Sorted = true;
             this.methodComboBox.TabIndex = 12;
             this.methodComboBox.SelectedIndexChanged += new System.EventHandler(this.methodComboBox_SelectedIndexChanged);
@@ -398,6 +390,7 @@ namespace AadGraphApiHelper
             this.bodyTextBox.Font = new System.Drawing.Font("Consolas", 11F);
             this.bodyTextBox.Location = new System.Drawing.Point(3, 4);
             this.bodyTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.bodyTextBox.MaxLength = 0;
             this.bodyTextBox.Multiline = true;
             this.bodyTextBox.Name = "bodyTextBox";
             this.bodyTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -486,10 +479,10 @@ namespace AadGraphApiHelper
             // 
             this.resourceSecondComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.resourceSecondComboBox.FormattingEnabled = true;
-            this.resourceSecondComboBox.Location = new System.Drawing.Point(675, 4);
+            this.resourceSecondComboBox.Location = new System.Drawing.Point(527, 4);
             this.resourceSecondComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resourceSecondComboBox.Name = "resourceSecondComboBox";
-            this.resourceSecondComboBox.Size = new System.Drawing.Size(103, 25);
+            this.resourceSecondComboBox.Size = new System.Drawing.Size(79, 25);
             this.resourceSecondComboBox.Sorted = true;
             this.resourceSecondComboBox.TabIndex = 17;
             this.resourceSecondComboBox.TextChanged += new System.EventHandler(this.resourceSecondComboBox_TextChanged);
@@ -632,7 +625,7 @@ namespace AadGraphApiHelper
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.64228F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.35772F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
             this.tableLayoutPanel1.Controls.Add(this.environmentLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.EnvironmentComboBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tenantLabel, 2, 0);
@@ -663,16 +656,18 @@ namespace AadGraphApiHelper
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 9;
+            this.tableLayoutPanel3.ColumnCount = 11;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.625F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.02404F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.4375F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.65385F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.5625F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.75F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.96154F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.02885F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.625F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.02404F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.30769F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.methodComboBox, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.entitySetLabel, 2, 0);
@@ -682,12 +677,13 @@ namespace AadGraphApiHelper
             this.tableLayoutPanel3.Controls.Add(this.resourceSecondComboBox, 6, 0);
             this.tableLayoutPanel3.Controls.Add(this.idTextBox, 5, 0);
             this.tableLayoutPanel3.Controls.Add(this.apiVersionLabel, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label2, 9, 0);
+            this.tableLayoutPanel3.Controls.Add(this.contentTypeComboBox, 10, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 90);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(984, 33);
             this.tableLayoutPanel3.TabIndex = 10;
             // 
@@ -733,6 +729,44 @@ namespace AadGraphApiHelper
             this.historyButton.Text = "History";
             this.historyButton.UseVisualStyleBackColor = true;
             this.historyButton.Click += new System.EventHandler(this.historyButton_Click_1);
+            // 
+            // apiVersionLabel
+            // 
+            this.apiVersionLabel.AutoSize = true;
+            this.apiVersionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.apiVersionLabel.Location = new System.Drawing.Point(612, 0);
+            this.apiVersionLabel.Name = "apiVersionLabel";
+            this.apiVersionLabel.Size = new System.Drawing.Size(104, 33);
+            this.apiVersionLabel.TabIndex = 18;
+            this.apiVersionLabel.Text = "Api Version:";
+            this.apiVersionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(793, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 33);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "&Content-Type";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // contentTypeComboBox
+            // 
+            this.contentTypeComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contentTypeComboBox.FormattingEnabled = true;
+            this.contentTypeComboBox.Items.AddRange(new object[] {
+            "application/json",
+            "application/xml",
+            "text/xml",
+            "text/plain",
+            "application/javascript",
+            "text/html"});
+            this.contentTypeComboBox.Location = new System.Drawing.Point(903, 3);
+            this.contentTypeComboBox.Name = "contentTypeComboBox";
+            this.contentTypeComboBox.Size = new System.Drawing.Size(78, 25);
+            this.contentTypeComboBox.TabIndex = 21;
             // 
             // MainForm
             // 
@@ -792,7 +826,6 @@ namespace AadGraphApiHelper
         private System.Windows.Forms.TextBox requestUrlTextBox;
         private System.Windows.Forms.ComboBox resourceFirstComboBox;
         private System.Windows.Forms.Label entitySetLabel;
-        private System.Windows.Forms.Label apiVersionLabel;
         private System.Windows.Forms.ComboBox apiVersionComboBox;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.TextBox idTextBox;
@@ -841,6 +874,9 @@ namespace AadGraphApiHelper
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripMenuItem whatIfToolStripMenuItem;
         private ToolTip toolTip1;
+        private Label apiVersionLabel;
+        private Label label2;
+        private ComboBox contentTypeComboBox;
     }
 }
 
