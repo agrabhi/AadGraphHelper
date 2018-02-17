@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace AadGraphApiHelper
 {   
@@ -98,13 +99,15 @@ namespace AadGraphApiHelper
                 Request request = new Request(accessToken);
                 HttpStatusCode httpStatusCode;
                 string response;
+                WebHeaderCollection responseHeaders;
                 RequestHistoryManager.Instance.AddRequest(this.methodComboBox.Text, this.requestUrlTextBox.Text, this.bodyTextBox.Text);
                 httpStatusCode = request.Send(
                     this.methodComboBox.Text, 
                     this.requestUrlTextBox.Text, 
                     this.bodyTextBox.Text, 
                     this.contentTypeComboBox.Text,
-                    out response);
+                    out response,
+                    out responseHeaders);
                 this.mainStatusStripStatusLabel.Text = (int)httpStatusCode + @": " + httpStatusCode;
 
                 if (!String.IsNullOrEmpty(response))
@@ -114,7 +117,7 @@ namespace AadGraphApiHelper
                         this.tabControl.SelectedTab = this.responseBodyTabPage;
                     }
 
-                    this.responseTextBox.Text = JsonText.Format(response);
+                    this.responseTextBox.Text = GetFormattedResponse(response, responseHeaders);
                     this.responseTextBox.SelectionLength = 0;
 
                     this.responseTable.SetJsonText(response);
@@ -130,6 +133,26 @@ namespace AadGraphApiHelper
                 this.Cursor = Cursors.Default;
                 MessageBox.Show(ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private string GetFormattedResponse(string response, WebHeaderCollection responseHeaders)
+        {
+            if (responseHeaders != null)
+            {
+
+                string val = responseHeaders.Get("Content-Type");
+
+                if (val.Contains("json"))
+                {
+                    return JsonText.Format(response);
+                }
+                else if (val.Contains("xml"))
+                {
+                    XDocument doc = XDocument.Parse(response);
+                    return doc.ToString();
+                }
+            }
+            return response;
         }
 
         private void getAppTokenButton_Click(object sender, EventArgs e)

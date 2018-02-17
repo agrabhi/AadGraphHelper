@@ -6,7 +6,7 @@ namespace AadGraphApiHelper
     class JsonText
     {
         private const string IndentString = "    ";
-
+        
         public static string Format(string str)
         {
             var indent = 0;

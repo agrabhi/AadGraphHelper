@@ -17,8 +17,9 @@ namespace AadGraphApiHelper
             this.AccessToken = accessToken;
         }
 
-        internal HttpStatusCode Send(string method, string url, string body, string contentType, out string response)
+        internal HttpStatusCode Send(string method, string url, string body, string contentType, out string response, out WebHeaderCollection headers)
         {
+            headers = null;
             WebRequest request = WebRequest.Create(url);
             request.Headers.Add("Authorization", this.AccessToken);
 
@@ -55,6 +56,8 @@ namespace AadGraphApiHelper
                             response = streamReader.ReadToEnd();
                         }
                     }
+
+                    headers = httpWebResponse.Headers;
 
                     return httpWebResponse.StatusCode;
                 }
