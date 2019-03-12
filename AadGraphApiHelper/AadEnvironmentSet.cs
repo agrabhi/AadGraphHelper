@@ -14,6 +14,7 @@ namespace AadGraphApiHelper
             this.Add(AadGraphProduction);
             this.Add(MSGraphPreProduction);
             this.Add(AadGraphPreProduction);
+            this.Add(CanaryMSGraphProduction);
         }
 
 
@@ -37,6 +38,19 @@ namespace AadGraphApiHelper
                     @"Production",
                     @"login.windows.net",
                     @"graph.microsoft.com",
+                    msGraphApiVersions,
+                    new MSGraphApiUrlFormatter());
+            }
+        }
+
+        public static AadEnvironment CanaryMSGraphProduction
+        {
+            get
+            {
+                return new AadEnvironment(
+                    @"Production",
+                    @"login.windows.net",
+                    @"canary.graph.microsoft.com",
                     msGraphApiVersions,
                     new MSGraphApiUrlFormatter());
             }
