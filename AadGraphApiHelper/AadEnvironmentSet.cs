@@ -14,6 +14,7 @@ namespace AadGraphApiHelper
             this.Add(AadGraphProduction);
             this.Add(MSGraphPreProduction);
             this.Add(AadGraphPreProduction);
+            this.Add(MSGraphChina);
             this.Add(CanaryMSGraphProduction);
         }
 
@@ -40,6 +41,19 @@ namespace AadGraphApiHelper
                     @"graph.microsoft.com",
                     msGraphApiVersions,
                     new MSGraphApiUrlFormatter());
+            }
+        }
+
+        public static AadEnvironment MSGraphChina
+        {
+            get
+            {
+                return new AadEnvironment(
+                    registryName: @"Production",
+                    loginEndpoint: @"login.partner.microsoftonline.cn",
+                    graphApiEndpoint: @"microsoftgraph.chinacloudapi.cn",
+                    apiVersions: msGraphApiVersions,
+                    urlFormatter: new MSGraphApiUrlFormatter());
             }
         }
 
